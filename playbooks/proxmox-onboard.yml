@@ -1,4 +1,4 @@
-- hosts: pvenodes
+- hosts: proxmox
   tasks:
 
     - name: install sudo package
