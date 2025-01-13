@@ -8,15 +8,20 @@
         cache_valid_time: 3600
         state: latest
 
-    - name: create ansible user
+    - name: create sysadmin user
       user:
-        name: ansible
+        name: sysadmin
         shell: '/bin/bash'
 
-    - name: add ansible to sudoers
+    - name: add sysadmin ssh key
+      authorized_key:
+        user: sysadmin
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHU1SSWfD0AlTwHw9yuCnpZ0M58PBER/xctERYzFIfEH sysadmin@ansible"
+
+    - name: add sysadmin to sudoers
       copy:
-        src: sudoer_ansible
-        dest: /etc/sudoers.d/ansible
+        src: sudoer_sysadmin
+        dest: /etc/sudoers.d/sysadmin
         owner: root
         group: root
         mode: 0440
